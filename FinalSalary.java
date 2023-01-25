@@ -15,29 +15,22 @@ public class FinalSalary {
             t1.join();
             t2.join();
             t3.join();
-        } catch (InterruptedException errormessage) {
-            System.out.println("Thread was interrupted: " + errormessage.getMessage());
+        } catch (InterruptedException e) {
+            System.out.println("Thread was interrupted: " + e.getMessage());
         }
 
-        
-
         double finalSalary = Task1.basicSalary + Task2.allowances + Task3.epf;
-        System.out.println("Final Salary: " + finalSalary);
-
-
-        
+        System.out.println("Final Salary: " + finalSalary);       
     }
-
 
 }
 
 class Task1 implements Runnable {
-
     Scanner scanner = new Scanner(System.in);
     public static double basicSalary;
     public void run() {
-        double perDayPayment = 500;
-        int noOfDays = 25;
+        double perDayPayment = 100;
+        int noOfDays = 10;
         basicSalary = perDayPayment * noOfDays;
         System.out.println("Basic Salary = " + basicSalary); 
     }
@@ -58,5 +51,6 @@ class Task3 implements Runnable {
         double epfDeduction = totalMonthlyEarnings * 0.08;
         double employerContribution = totalMonthlyEarnings * 0.12;
         epf = epfDeduction + employerContribution;
+        System.out.println("EPF = " + epf);
     }
 }
