@@ -26,11 +26,10 @@ public class FinalSalary {
 }
 
 class Task1 implements Runnable {
-    Scanner scanner = new Scanner(System.in);
     public static double basicSalary;
     public void run() {
-        double perDayPayment = 1000;
-        int noOfDays = 30;
+        // double perDayPayment = 1000;
+        // int noOfDays = 30;
         basicSalary = perDayPayment * noOfDays;
         System.out.println("Basic Salary = " + basicSalary); 
     }
