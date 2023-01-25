@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class FinalSalary {
+public class SalaryThread {
 
     public static double basicSalary;
 
@@ -26,20 +26,22 @@ public class FinalSalary {
     public void calculateSalary() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Payment Per Day: ");
-        String perDayPaymentStr = scanner.nextLine();
-        if(perDayPaymentStr == null || perDayPaymentStr.isEmpty()) {
-            System.out.println("Empty input. Please enter valid input.");
-            return;
-        }
-        double perDayPayment = Double.parseDouble(perDayPaymentStr);
+        double perDayPayment = Double.parseDouble(scanner.nextLine());
+        // String perDayPaymentStr = scanner.nextLine();
+        // if(perDayPaymentStr == null || perDayPaymentStr.isEmpty()) {
+        //     System.out.println("Empty input. Please enter valid input.");
+        //     return;
+        // }
+        // double perDayPayment = Double.parseDouble(perDayPaymentStr);
 
         System.out.println("Enter No of Days: ");
-        String noOfDaysStr = scanner.nextLine();
-        if(noOfDaysStr == null || noOfDaysStr.isEmpty()) {
-            System.out.println("Empty input. Please enter valid input.");
-            return;
-        }
-        int noOfDays = Integer.parseInt(noOfDaysStr);
+        int noOfDays = Integer.parseInt(scanner.nextLine());
+        // String noOfDaysStr = scanner.nextLine();
+        // if(noOfDaysStr == null || noOfDaysStr.isEmpty()) {
+        //     System.out.println("Empty input. Please enter valid input.");
+        //     return;
+        // }
+        // int noOfDays = Integer.parseInt(noOfDaysStr);
 
 
         basicSalary = perDayPayment * noOfDays;
@@ -56,14 +58,14 @@ public class FinalSalary {
 class Task2 implements Runnable {
     public static double allowances;
     public void run() {
-        allowances = FinalSalary.basicSalary * 0.05;
+        allowances = SalaryThread.basicSalary * 0.05;
     }
 }
 
 class Task3 implements Runnable {
     public static double epf;
     public void run() {
-        double totalMonthlyEarnings = FinalSalary.basicSalary + Task2.allowances;
+        double totalMonthlyEarnings = SalaryThread.basicSalary + Task2.allowances;
         double epfDeduction = totalMonthlyEarnings * 0.08;
         double employerContribution = totalMonthlyEarnings * 0.12;
         epf = epfDeduction + employerContribution;
