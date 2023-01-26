@@ -2,36 +2,34 @@ import java.io.*;
 import java.util.Scanner;
 public class FinalSalary {
 
-    public static void main(String[] args) {
-        Thread t1 = new Thread(new Task1());
-        Thread t2 = new Thread(new Task2());
-        Thread t3 = new Thread(new Task3());
+    public static void main(String[] args) throws InterruptedException {
+        // creating three threads
+        Thread t1 = new Thread(new Task1(), "Mainthread");
+        Thread t2 = new Thread(new Task2(), "thread2");
+        Thread t3 = new Thread(new Task3(), "thread3");
 
+        // call run() method
         t1.start();
         t2.start();
         t3.start();
 
-        try {
-            t1.join();
-            t2.join();
-            t3.join();
-        } catch (InterruptedException e) {
-            System.out.println("Thread was interrupted: " + e.getMessage());
-        }
 
-        double finalSalary = Task1.basicSalary + Task2.allowances + Task3.epf;
-        System.out.println("Final Salary: " + finalSalary);       
+        t1.join();
+        t2.join();
+        t3.join();
     }
-
 }
 
 class Task1 implements Runnable {
     public static double basicSalary;
     public void run() {
-        double perDayPayment = 1000;
-        int noOfDays = 30;
+        double perDayPayment = 500;
+        int noOfDays = 20;
         basicSalary = perDayPayment * noOfDays;
         System.out.println("Basic Salary = " + basicSalary); 
+
+        double finalSalary = basicSalary + Task2.allowances + Task3.epf;
+        System.out.println("Final Salary: " + finalSalary);
     }
 }
 
