@@ -6,11 +6,41 @@ public class FinalSalary {
 
     public static void main(String[] args) throws InterruptedException {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter per day payment: ");
-        double perDayPayment = sc.nextDouble();
-        System.out.print("Enter number of days: ");
-        int noOfDays = sc.nextInt();
+        double perDayPayment = 0;
+        int noOfDays = 0;
+
+        //check invalid input
+        while (true) {
+            System.out.println("Enter Payment Per Day: ");
+            String input = sc.nextLine();
+            if (input.isEmpty() || input == null) {
+                System.out.println("Invalid input. Please enter a valid per day payment: ");
+                continue;
+            }
+            try {
+                perDayPayment = Double.parseDouble(input);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid per day payment: ");
+            }
+        }
+
+        while (true) {
+            System.out.println("Enter No of Days: ");
+            String input = sc.nextLine();
+            if (input.isEmpty() || input == null) {
+                System.out.println("Invalid input. Please enter a valid number of days: ");
+                continue;
+            }
+            try {
+                noOfDays = Integer.parseInt(input);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number of days: ");
+            }
+        }
         sc.close();
+
         
         // creating three threads
         Thread t1 = new Thread(new Task1(), "Mainthread");
